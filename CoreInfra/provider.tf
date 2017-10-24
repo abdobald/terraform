@@ -6,4 +6,28 @@ provider "aws" {
 
 resource "aws_vpc" "teraform-aba" {
   cidr_block = "172.23.0.0/16"
+
+  tags {
+    name = "aba"
+  }
+}
+
+resource "aws_subnet" "subnet-pub-eu-west-1a" {
+  vpc_id            = "${aws_vpc.teraform-aba.id}"
+  availability_zone = "eu-west-1a"
+  cidr_block        = "172.23.0.0/24"
+
+  tags {
+    name = "aba"
+  }
+}
+
+resource "aws_subnet" "subnet-pub-eu-west-1b" {
+  vpc_id            = "${aws_vpc.teraform-aba.id}"
+  availability_zone = "eu-west-1b"
+  cidr_block        = "172.23.1.0/24"
+
+  tags {
+    name = "aba"
+  }
 }
